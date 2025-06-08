@@ -13,24 +13,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 
-/*
-onBackground za tekst
- */
 
 
 
 private val DarkColorScheme = darkColorScheme(
-    primary = TrueBlue,
-    inversePrimary = LapisLazuli,
+    primary = LapisLazuli,
+    inversePrimary = TrueBlue,
     secondary = TrueBlue,
     tertiary = PaynesGray,
     background = LapisLazuli,
     onBackground = Color.White,
     onPrimary = Color.White,
-    onPrimaryContainer = ColumbiaBlue,
-    primaryContainer = LapisLazuli
-
-
+    onPrimaryContainer = Color.White,
+    primaryContainer = TrueBlue,
+    outline = Color.White,
+    outlineVariant = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -42,7 +39,9 @@ private val LightColorScheme = lightColorScheme(
     onBackground = Color.Black,
     onPrimary = Color.Black,
     primaryContainer = TrueBlue,
-    onPrimaryContainer = ColumbiaBlue
+    onPrimaryContainer = ColumbiaBlue,
+    outline = TrueBlue,
+    outlineVariant = TrueBlue
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

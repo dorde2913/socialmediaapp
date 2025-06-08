@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Edit
@@ -31,10 +32,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.socialmediapp.R
+import com.example.socialmediapp.ui.screens.authentication.components.AuthColumn
+import com.example.socialmediapp.ui.screens.authentication.components.BorderedButton
+
 import com.example.socialmediapp.ui.theme.SocialmediAppTheme
 
 @Composable
@@ -44,30 +49,15 @@ fun GreetingScreen(
 ){
 
 
-    Column(
-        modifier = Modifier.fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.inversePrimary
-                    ),
-                )
-
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-
-        // vertikalno: logo -> login form -> dugme za signup?
-
+    AuthColumn{
 
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "logo",
             modifier = Modifier.fillMaxWidth()
-                .height(184.dp)
-                .padding(top = 72.dp),
-            contentScale = ContentScale.Crop
+                .padding(top = 72.dp)
+                .padding(horizontal = 32.dp),
+            //contentScale = ContentScale.Crop
         )
 
 
@@ -86,21 +76,12 @@ fun GreetingScreen(
         )
 
 
-        Button(
-            modifier = Modifier.fillMaxWidth()
-                .padding(32.dp)
-                .height(52.dp),
-            colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                disabledContentColor = MaterialTheme.colorScheme.primary,
-                disabledContainerColor = MaterialTheme.colorScheme.primary
-            ),
-
-            //enabled = false,
-            onClick = {
-                onLoginPress()
-            }
+        BorderedButton(
+            modifier = Modifier.padding(vertical = 24.dp)
+                .widthIn(max = 512.dp)
+                .fillMaxWidth(),
+            onClick = onLoginPress,
+            inverseColor = false
         ){
             Text(
                 text = "Login",
@@ -108,29 +89,20 @@ fun GreetingScreen(
             )
         }
 
-        Button(
-            modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 32.dp)
-                .height(52.dp),
-            colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                contentColor = MaterialTheme.colorScheme.primaryContainer,
-                disabledContentColor = MaterialTheme.colorScheme.primary,
-                disabledContainerColor = MaterialTheme.colorScheme.primary
-            ),
-            border = BorderStroke(
-                width = 3.dp,
-                color = MaterialTheme.colorScheme.inversePrimary
-            ),
-            onClick = {
-                onSignUpPress()
-            }
+        BorderedButton(
+            modifier = Modifier
+                .widthIn(max = 512.dp)
+                .fillMaxWidth(),
+            onClick = onSignUpPress,
+            inverseColor = true
         ){
             Text(
                 text = "Sign up",
                 fontSize = 20.sp
             )
         }
+
+
 
 
         Row(
@@ -191,6 +163,13 @@ fun GreetingScreen(
 
 }
 
+
+
+
+
+
+
+
 @Preview
 @Composable
 fun AuthScreenPreview(){
@@ -207,6 +186,19 @@ fun AuthScreenPreview(){
 @Preview
 @Composable
 fun AuthScreenLightModePreview(){
+    SocialmediAppTheme() {
+        GreetingScreen(
+            {},
+            {}
+        )
+    }
+}
+
+@Preview(
+    device = "spec:width=1280dp,height=800dp,dpi=240"
+)
+@Composable
+fun AuthScreenTabletPreview(){
     SocialmediAppTheme() {
         GreetingScreen(
             {},
