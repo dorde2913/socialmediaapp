@@ -10,7 +10,10 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.ColorUtils
 
 @Composable
 fun BorderedButton(
@@ -22,17 +25,18 @@ fun BorderedButton(
 ){
     Button(
         modifier = modifier
-            .padding(horizontal = 32.dp)
             .height(52.dp),
         colors = ButtonColors(
             containerColor = if (inverseColor) MaterialTheme.colorScheme.onPrimaryContainer else  MaterialTheme.colorScheme.primaryContainer,
             contentColor = if (inverseColor) MaterialTheme.colorScheme.primaryContainer else  MaterialTheme.colorScheme.onPrimaryContainer,
-            disabledContentColor = MaterialTheme.colorScheme.primary,
-            disabledContainerColor = MaterialTheme.colorScheme.primary
+            disabledContentColor = if (inverseColor) MaterialTheme.colorScheme.primaryContainer.darken(0.4f)
+                                    else  MaterialTheme.colorScheme.onPrimaryContainer.darken(0.4f),
+            disabledContainerColor = if (inverseColor) MaterialTheme.colorScheme.onPrimaryContainer.darken(0.4f)
+                                    else  MaterialTheme.colorScheme.primaryContainer.darken(0.4f),
         ),
         border = BorderStroke(
             width = 3.dp,
-            color = MaterialTheme.colorScheme.outline
+            color = if (enabled) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outline.darken(0.4f)
         ),
         onClick = {
             onClick()
@@ -41,4 +45,13 @@ fun BorderedButton(
     ){
         content()
     }
+}
+
+fun Color.lighten(factor: Float): Color {
+    val newColor = ColorUtils.blendARGB(this.toArgb(), Color.White.toArgb(), factor)
+    return Color(newColor)
+}
+fun Color.darken(factor: Float): Color {
+    val newColor = ColorUtils.blendARGB(this.toArgb(), Color.Black.toArgb(), factor)
+    return Color(newColor)
 }

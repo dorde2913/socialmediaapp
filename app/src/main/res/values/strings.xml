@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">socialmediApp</string>
+    <string name="greeting">Hello</string>
+    <string name="welcome_message">Welcome to AppName</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_using">Sign up via</string>
+    <string name="sign_in_via">Sign in via</string>
+    <string name="enter_credentials">Please enter your credentials</string>
+    <string name="welcome_back_message">Welcome Back</string>
+    <string name="username_cannot_be_blank">Username cannot be blank!</string>
+    <string name="username_length_error_msg">Username length must be between 5 and 25 characters!</string>
+    <string name="username_invalid_character_error">Username should only contain characters a-Z and digits 0-9</string>
+    <string name="password_cannot_be_blank">Password cannot be blank!</string>
+    <string name="password_length_error">Password must be between 5 and 25 characters long!</string>
+    <string name="password_invalid_char_error"><![CDATA[Password can only contain characters a-Z, digits 0-9 \nand special characters !@#$%^&*]]></string>
+    <string name="passwords_must_match">Passwords must match!</string>
 </resources>

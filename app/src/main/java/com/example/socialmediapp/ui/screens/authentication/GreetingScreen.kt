@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import com.example.socialmediapp.R
 import com.example.socialmediapp.ui.screens.authentication.components.AuthColumn
 import com.example.socialmediapp.ui.screens.authentication.components.BorderedButton
+import com.example.socialmediapp.ui.screens.authentication.components.SignInViaSocialsRow
 
 import com.example.socialmediapp.ui.theme.SocialmediAppTheme
 
@@ -54,7 +56,8 @@ fun GreetingScreen(
         Image(
             painter = painterResource(R.drawable.logo),
             contentDescription = "logo",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(top = 72.dp)
                 .padding(horizontal = 32.dp),
             //contentScale = ContentScale.Crop
@@ -62,100 +65,54 @@ fun GreetingScreen(
 
 
         Text(
-            text = "Hello",
+            text = stringResource(R.string.greeting),
             textAlign = TextAlign.Center,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onPrimary
+            color = MaterialTheme.colorScheme.onPrimary,
+            modifier = Modifier.padding(top = 32.dp)
         )
 
         Text(
-            text = "Welcome to AppName",
+            text = stringResource(R.string.welcome_message),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onPrimary
         )
 
 
         BorderedButton(
-            modifier = Modifier.padding(vertical = 24.dp)
+            modifier = Modifier
+                .padding(horizontal = 32.dp)
+                .padding(vertical = 32.dp)
                 .widthIn(max = 512.dp)
                 .fillMaxWidth(),
             onClick = onLoginPress,
             inverseColor = false
         ){
             Text(
-                text = "Login",
+                text = stringResource(R.string.login),
                 fontSize = 20.sp
             )
         }
 
         BorderedButton(
             modifier = Modifier
+                .padding(horizontal = 32.dp)
                 .widthIn(max = 512.dp)
                 .fillMaxWidth(),
             onClick = onSignUpPress,
             inverseColor = true
         ){
             Text(
-                text = "Sign up",
+                text = stringResource(R.string.sign_up),
                 fontSize = 20.sp
             )
         }
 
 
-
-
-        Row(
-            modifier = Modifier.fillMaxWidth()
-                .padding(32.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            HorizontalDivider(
-                modifier = Modifier.weight(0.3f),
-                color = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-            Text(
-                text = "Or",
-                modifier = Modifier.padding(horizontal = 16.dp),
-                color = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-            HorizontalDivider(
-                modifier = Modifier.weight(0.3f),
-                color = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-        }
-
-        Text("Sign up using",
-            color = MaterialTheme.colorScheme.onPrimaryContainer)
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ){
-
-            /*
-            placeholders
-             */
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(Icons.Default.Menu,null)
-            }
-
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(Icons.Default.Edit,null)
-            }
-
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(Icons.Default.Build,null)
-            }
-
-        }
+        SignInViaSocialsRow(
+            label = stringResource(R.string.sign_up_using)
+        )
 
 
 
